@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Iframe com Tabela</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-image: url('imagens/Minecraft\ Sculk\ Block.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    table.main-layout {
+      width: 100%;
+      height: 100vh;
+      border-collapse: collapse;
+    }
+
+    td.sidebar {
+      width: 25%;
+      background-color: transparent;
+    }
+
+    td.content {
+      width: 50%;
+      text-align: center;
+      vertical-align: middle;
+      height: 100%;
+    }
+
+    table.wrapper {
+      margin: auto;
+      background-color: rgba(9, 9, 9, o.5);
+      border: 3px solid #555;
+      width: 700px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      padding: 20px 0;
+    }
+
+    table.wrapper h1,
+    table.wrapper p.data {
+      text-align: center;
+      margin: 0;
+    }
+
+    table.wrapper h1 {
+      font-size: 32px;
+      margin-bottom: 5px;
+    }
+
+    table.wrapper p.data {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    iframe.iframe-grande {
+      width: 600px;
+      height: 430px;
+      border: none;
+      display: block;
+      margin: 0 auto 10px auto;
+      background-color: white;
+    }
+
+    .botoes {
+      margin-top: 5px;
+    }
+
+    button {
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #7b7c7d;
+    }
+  </style>
+</head>
+<body>
+
+  <table class="main-layout">
+    <tr>
+      <td class="sidebar"></td>
+
+      <td class="content">
+        <table class="wrapper">
+          <tr>
+            <td>
+              <h1>Iframe</h1>
+              <p class="data">Quarta-feira, 9 de Abril de 2025</p>
+              <iframe id="meuIframe" class="iframe-grande"></iframe>
+              <div class="botoes">
+                <button onclick="voltar()">Anterior</button>
+                <button onclick="proximo()">Próximo</button>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
+
+      <td class="sidebar"></td>
+    </tr>
+  </table>
+
+  <script>
+    const paginas = ["pag1.html", "pag2.html", "pag3.html", "pag4.html", "pag5.html", "pag6.html"];
+    let paginaAtual = 0;
+    const iframe = document.getElementById("meuIframe");
+
+    function atualizarIframe() {
+      iframe.src = paginas[paginaAtual];
+    }
+
+    function proximo() {
+      if (paginaAtual < paginas.length - 1) {
+        paginaAtual++;
+        atualizarIframe();
+      }
+    }
+
+    function voltar() {
+      if (paginaAtual > 0) {
+        paginaAtual--;
+        atualizarIframe();
+      }
+    }
+
+    window.onload = () => {
+      atualizarIframe();
+
+      setInterval(() => {
+        if (paginaAtual < paginas.length - 1) {
+          paginaAtual++;
+          atualizarIframe();
+        }
+      }, 3000);
+    };
+  </script>
+</body>
+</html>
+
+
